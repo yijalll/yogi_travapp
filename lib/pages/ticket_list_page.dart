@@ -62,7 +62,7 @@ class TicketListPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Jambi > ${item.kota!.namaKota!} '),
-                          Text(item.jam!),
+                          Text('Jam Keberangkatan > ${item.jam!}'),
                         ],
                       ),
                       trailing: RichText(
