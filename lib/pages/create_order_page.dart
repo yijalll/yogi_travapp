@@ -6,6 +6,7 @@ import 'package:tour_and_travel/core/colors.dart';
 import 'package:tour_and_travel/core/num_ext.dart';
 import 'package:tour_and_travel/models/ticket_response.dart';
 import 'package:tour_and_travel/pages/payment_page.dart';
+import 'package:tour_and_travel/services/auth_service.dart';
 import 'package:tour_and_travel/widgets/custom_dropdown.dart';
 import 'package:tour_and_travel/widgets/custom_text_field.dart';
 import 'package:tour_and_travel/widgets/dotted_divider.dart';
@@ -29,8 +30,18 @@ class _CreateOrderPageState extends State<CreateOrderPage> {
 
   @override
   void initState() {
-    genderController.text = genders.first;
     super.initState();
+    genderController.text = genders.first;
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final user = await AuthService().getUserFromLocal();
+    if (user != null && user.data != null) {
+      setState(() {
+        nameController.text = user.data!.name ?? '';
+      });
+    }
   }
 
   @override
