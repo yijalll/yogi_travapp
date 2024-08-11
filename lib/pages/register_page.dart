@@ -19,6 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final alamatController = TextEditingController();
 
   @override
   void dispose() {
@@ -27,6 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
     phoneNumberController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+    alamatController.dispose();
     super.dispose();
   }
 
@@ -66,6 +68,12 @@ class _RegisterPageState extends State<RegisterPage> {
               label: 'No Telepone',
               hintText: 'contoh: 081212345678',
               keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
+            ),
+            CustomTextField(
+              controller: alamatController,
+              label: 'Alamat',
+              hintText: 'contoh: simp III sipin Kotabaru',
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 16.0),
@@ -112,6 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     name: nameController.text,
                     email: emailController.text,
                     phone: phoneNumberController.text,
+                    alamat: alamatController.text,
                     password: passwordController.text,
                     confPassword: confirmPasswordController.text,
                   );

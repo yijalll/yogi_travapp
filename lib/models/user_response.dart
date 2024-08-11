@@ -33,6 +33,7 @@ class User {
   final String? password;
   final String? refreshToken;
   final String? role;
+  final String? alamat;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -44,6 +45,7 @@ class User {
     this.password,
     this.refreshToken,
     this.role,
+    this.alamat,
     this.createdAt,
     this.updatedAt,
   });
@@ -56,6 +58,7 @@ class User {
         password: json["password"],
         refreshToken: json["refresh_token"],
         role: json["role"],
+        alamat: json["alamat"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -72,6 +75,7 @@ class User {
         "password": password,
         "refresh_token": refreshToken,
         "role": role,
+        "alamat": alamat,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
       };

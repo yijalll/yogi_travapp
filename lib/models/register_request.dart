@@ -15,6 +15,7 @@ class RegisterRequest {
   final String? name;
   final String? email;
   final String? phone;
+  final String? alamat;
   final String? password;
   final String? confPassword;
 
@@ -23,6 +24,7 @@ class RegisterRequest {
     this.name,
     this.email,
     this.phone,
+    this.alamat,
     this.password,
     this.confPassword,
   });
@@ -32,6 +34,7 @@ class RegisterRequest {
         name: json["name"],
         email: json["email"],
         phone: json["phone"],
+        alamat: json["alamat"],
         password: json["password"],
         confPassword: json["confPassword"],
       );
@@ -42,6 +45,7 @@ class RegisterRequest {
         "phone": phone,
         "password": password,
         "confPassword": confPassword,
+        "alamat": alamat,
         "role": "user",
       };
 }

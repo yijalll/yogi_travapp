@@ -77,6 +77,8 @@ class TicketListPage extends StatelessWidget {
                           children: [
                             Text(
                                 'Jambi > ${item.kota!.namaKota!} '), // Mengatur rute
+                            Text( 
+                                DateFormat('dd MMMM yyyy', 'id_ID').format(item.tanggal!)), // Mengatur tanggal keberangkatan
                             Text(
                                 'Jam Keberangkatan > ${item.jam!}'), // Mengatur jam keberangkatan
                           ],

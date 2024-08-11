@@ -24,6 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final alamatController = TextEditingController();
 
   @override
   void initState() {
@@ -36,6 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
     nameController.text = user?.data?.name ?? '';
     emailController.text = user?.data?.email ?? '';
     phoneNumberController.text = user?.data?.phone ?? '';
+    alamatController.text = user?.data?.alamat ?? '';
     passwordController.text = '';
     confirmPasswordController.text = '';
   }
@@ -47,6 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
     phoneNumberController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+    alamatController.dispose();
     super.dispose();
   }
 
@@ -124,6 +127,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 16.0),
+                CustomTextField(
+                  controller: alamatController,
+                  label: 'Alamat',
+                  hintText: 'contoh: simp III sipin Kotabaru',
+                  keyboardType: TextInputType.streetAddress,
+                  textInputAction: TextInputAction.next,
+                ),
+                const SizedBox(height: 16.0),
                 // CustomTextField(
                 //   controller: passwordController,
                 //   label: 'Password',
@@ -174,6 +185,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           phone: phoneNumberController.text,
                           password: passwordController.text,
                           confPassword: confirmPasswordController.text,
+                          alamat: alamatController.text,
                         );
                         if (context.mounted) {
                           context
