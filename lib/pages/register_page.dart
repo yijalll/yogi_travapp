@@ -51,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
             CustomTextField(
               controller: nameController,
               label: 'Nama',
-              hintText: 'contoh: Yoshrizal Fadli',
+              hintText: 'Nama Lengkap',
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 16.0),
@@ -73,7 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
             CustomTextField(
               controller: alamatController,
               label: 'Alamat',
-              hintText: 'contoh: simp III sipin Kotabaru',
+              hintText: 'contoh: Kebun Jeruk',
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 16.0),

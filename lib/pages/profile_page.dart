@@ -107,7 +107,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 CustomTextField(
                   controller: nameController,
                   label: 'Nama',
-                  hintText: 'contoh: Yoshrizal Fadli',
+                  hintText: 'Nama Lengkap',
                   textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 16.0),

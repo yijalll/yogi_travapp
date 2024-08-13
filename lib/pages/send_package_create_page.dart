@@ -119,7 +119,7 @@ class _SendPackageCreatePageState extends State<SendPackageCreatePage> {
                 CustomTextField(
                   controller: senderNameController,
                   label: 'Nama Pengirim',
-                  hintText: 'Contoh: Yosrizal Fadli',
+                  hintText: 'Nama Lengkap',
                   textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 16.0),
@@ -160,7 +160,7 @@ class _SendPackageCreatePageState extends State<SendPackageCreatePage> {
                 CustomTextField(
                   controller: receiverNameController,
                   label: 'Nama Pengirim',
-                  hintText: 'Contoh: Yosrizal Fadli',
+                  hintText: 'Nama Lengkap',
                   textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 16.0),

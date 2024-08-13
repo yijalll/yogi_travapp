@@ -217,7 +217,7 @@ class _CreateOrderPageState extends State<CreateOrderPage> {
                 CustomTextField(
                   controller: nameController,
                   label: 'Nama Penumpang',
-                  hintText: 'Contoh: Yosrizal Fadli',
+                  hintText: 'Nama Lengkap',
                   textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(height: 16.0),
