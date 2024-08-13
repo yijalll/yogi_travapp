@@ -8,25 +8,45 @@ import 'package:tour_and_travel/core/colors.dart'; // Import library untuk menga
 import 'package:tour_and_travel/core/num_ext.dart'; // Import library untuk memperluas fungsi numerik
 import 'package:tour_and_travel/pages/create_order_page.dart'; // Import library untuk halaman buat pesanan
 
-class TicketListPage extends StatelessWidget {
-  const TicketListPage({super.key}); // Konstruktor untuk TicketListPage
+class TicketListPage extends StatefulWidget {
+  const TicketListPage({super.key});
+
+  @override
+  State<TicketListPage> createState() => _TicketListPageState();
+}
+
+class _TicketListPageState extends State<TicketListPage> {
+  String _searchQuery = '';
 
   @override
   Widget build(BuildContext context) {
-    // Menambahkan event untuk mendapatkan tiket ketika halaman dibuka
     context.read<GetTicketsBloc>().add(const DoGetTicketsEvent());
     return Scaffold(
-      backgroundColor: AppColors.background, // Mengatur warna latar belakang
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text('Daftar Tiket'), // Mengatur judul app bar
+        title: const Text('Daftar Tiket'),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          // Menambahkan event untuk mendapatkan tiket ketika halaman di-refresh
           context.read<GetTicketsBloc>().add(const DoGetTicketsEvent());
         },
         child: ListView(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Cari berdasarkan tujuan',
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _searchQuery = value.toLowerCase();
+                  });
+                },
+              ),
+            ),
             ListTile(
               tileColor:
                   AppColors.white, // Mengatur warna latar belakang list tile
@@ -51,15 +71,19 @@ class TicketListPage extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is GetTicketsSuccess) {
-                  // Menampilkan daftar tiket jika data berhasil diambil
+                  final filteredData = state.data
+                      .where((item) => item.kota!.namaKota!
+                          .toLowerCase()
+                          .contains(_searchQuery))
+                      .toList();
                   return ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: state.data.length,
+                    itemCount: filteredData.length,
                     separatorBuilder: (context, index) => const SizedBox(
                         height: 2.0), // Mengatur jarak antar item
                     itemBuilder: (context, index) {
-                      final item = state.data[index];
+                      final item = filteredData[index];
                       return ListTile(
                         onTap: () {
                           // Menavigasi ke halaman buat pesanan ketika item diklik
@@ -77,8 +101,8 @@ class TicketListPage extends StatelessWidget {
                           children: [
                             Text(
                                 'Jambi > ${item.kota!.namaKota!} '), // Mengatur rute
-                            Text( 
-                                DateFormat('dd MMMM yyyy', 'id_ID').format(item.tanggal!)), // Mengatur tanggal keberangkatan
+                            Text(DateFormat('dd MMMM yyyy', 'id_ID').format(item
+                                .tanggal!)), // Mengatur tanggal keberangkatan
                             Text(
                                 'Jam Keberangkatan > ${item.jam!}'), // Mengatur jam keberangkatan
                           ],
